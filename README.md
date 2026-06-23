@@ -1,3 +1,8 @@
+## 🔗 Wszystkie modele i repozytoria
+Pełna lista projektów znajduje się na stronie:
+https://jbackk-lang.github.io
+---
+
 # TRM‑Geometry‑Core  
 Koncepcyjna geometria skrętu, przejść i struktur — fundament modeli Λ–τ–ρ oraz filtrów φ.
 
