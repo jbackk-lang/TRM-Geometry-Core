@@ -2,7 +2,7 @@
 Pełna lista projektów znajduje się na stronie:
 https://jbackk-lang.github.io
 ---
-
+![Diagram TRM / GIA / TIMDR](https://github.com/jbackk-lang/GIA-and-TIMDR/raw/main/diagram.png)
 # TRM‑Geometry‑Core  
 Koncepcyjna geometria skrętu, przejść i struktur — fundament modeli Λ–τ–ρ oraz filtrów φ.
 
