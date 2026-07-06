@@ -1,282 +1,75 @@
-1. TIMDR — Warstwa Dynamiki Informacji (core engine)
-TIMDR jest silnikiem przepływu informacji, który opisuje:
+# TIMDR — Global Architecture Map
 
-jak wartość, ryzyko, kontekst i struktura przemieszczają się między węzłami,
+TIMDR jest silnikiem dynamiki informacji, który opisuje, jak wartość, ryzyko, kontekst i struktura przepływają przez system.  
+Architektura składa się z pięciu warstw: TRM, TIMDR, GIA, FIELDCORE oraz TIV.  
+Każda warstwa pełni inną funkcję, ale wszystkie działają jako jeden spójny organizm informacyjny.
 
-jak zmienia się stan systemu w czasie,
+---
 
-jak powstają gradienty informacyjne,
+## 1. TIV — Wartość jako proces
 
-jak powstają deformacje topologiczne.
+Tensorowa definicja wartości:
 
-Formalnie:
+TIV(x,t) = N(x,t)·I + α_R·R(x,t) + α_C·C(x,t) + α_H·H(x,t)
 
-∂
-𝑋
-(
-𝑥
-,
-𝑡
-)
-∂
-𝑡
-=
-𝐹
-𝑙
-𝑜
-𝑤
-(
-𝑥
-,
-𝑡
-)
-+
-𝐺
-𝐼
-𝐴
-(
-𝑥
-,
-𝑡
-)
-+
-𝐹
-𝐼
-𝐸
-𝐿
-𝐷
-𝐶
-𝑂
-𝑅
-𝐸
-(
-𝑥
-,
-𝑡
-)
-gdzie:
+- N(x,t) — nominalna wartość (diagonalna)
+- R(x,t) — tensor ryzyka
+- C(x,t) — tensor kontekstu
+- H(x,t) — tensor historii przepływu
 
-Flow — przepływ tensorowy,
+TIV nie jest liczbą — jest procesem ewolucji wartości w czasie i przestrzeni topologicznej.
 
-GIA — interpretacja globalna,
+---
 
-FIELDCORE — stabilizacja,
+## 2. TRM — Topological Reduction Model
 
-TRM — topologia, która determinuje kierunki przepływu.
+TRM definiuje geometrię systemu:
 
-TIMDR jest silnikiem ewolucji, nie bazą danych.
+- węzły (punkty informacyjne)
+- krawędzie (kanały przepływu)
+- wagi (siła połączeń)
+- tensor połączeń Γ(x,y)
 
-2. TRM — Warstwa Topologii (geometria przepływu)
-TRM definiuje kształt systemu:
+TRM określa, gdzie przepływ może wystąpić i jak silnie oddziałuje.
 
-węzły (instytucje, sensory, moduły, obiekty),
+---
 
-krawędzie (kanały przepływu),
+## 3. TIMDR — Informational Flow Engine
 
-wagi (siła połączeń),
+TIMDR jest silnikiem przepływu:
 
-tensor połączeń (pełna macierz kierunkowa).
+∂X/∂t = Flow + GIA + FIELDCORE
 
-Formalnie:
+- Flow — tensor przepływu po TRM
+- GIA — interpretacja globalna
+- FIELDCORE — stabilizacja
 
-𝛤
-(
-𝑥
-,
-𝑦
-)
-∈
-𝑅
-𝑛
-×
-𝑛
-TRM określa:
+TIMDR określa, jak system zmienia się w czasie.
 
-gdzie przepływ może wystąpić,
+---
 
-jak silny jest,
+## 4. GIA — Global Interpretative Architecture
 
-jak deformuje wartość,
+GIA jest polem interpretacyjnym:
 
-jak powstają pętle, cykle, rezonanse.
+TIV_Φ = Φ(x,t) · TIV(x,t)
 
-TRM jest geometrią systemu.
+Nadaje znaczenie przepływom i moduluje wartość w zależności od kontekstu globalnego.
 
-3. GIA — Warstwa Interpretacji Globalnej (meaning engine)
-GIA jest pole interpretacyjne, które:
+---
 
-nadaje znaczenie przepływom,
+## 5. FIELDCORE — Stabilization Field
 
-moduluje wartość,
+FIELDCORE utrzymuje równowagę:
 
-łączy lokalne stany w globalny kontekst,
+∂TIV/∂t|Σ = -β · (TIV - TIV*)
 
-działa jako filtr semantyczny.
+Zapobiega oscylacjom
 
-Formalnie:
-
-𝑇
-𝐼
-𝑉
-Φ
-(
-𝑥
-,
-𝑡
-)
-=
-𝛷
-(
-𝑥
-,
-𝑡
-)
-⋅
-𝑇
-𝐼
-𝑉
-(
-𝑥
-,
-𝑡
-)
-GIA jest semantyczną warstwą systemu — mówi co znaczy to, co płynie.
-
-4. FIELDCORE — Warstwa Stabilizacji (homeostaza)
-FIELDCORE jest pole stabilizujące, które:
-
-tłumi oscylacje,
-
-utrzymuje równowagę,
-
-zapobiega rozbieganiu się wartości,
-
-działa jako regulator.
-
-Formalnie:
-
-∂
-𝑇
-𝐼
-𝑉
-(
-𝑥
-,
-𝑡
-)
-∂
-𝑡
-∣
-Σ
-=
-−
-𝛽
-(
-𝑇
-𝐼
-𝑉
-(
-𝑥
-,
-𝑡
-)
-−
-𝑇
-𝐼
-𝑉
-∗
-(
-𝑥
-)
-)
-FIELDCORE jest układem nerwowym stabilności.
-
-5. TIV — Warstwa Wartości (waluta informacyjna)
-TIV jest tensorową jednostką wartości, która:
-
-ma reżim A (nominalny),
-
-ma reżim B (informacyjny),
-
-jest osadzona w TRM,
-
-jest modulowana przez GIA,
-
-jest stabilizowana przez FIELDCORE,
-
-ewoluuje przez TIMDR.
-
-Formalnie:
-
-𝑇
-𝐼
-𝑉
-(
-𝑥
-,
-𝑡
-)
-=
-𝑁
-(
-𝑥
-,
-𝑡
-)
-𝐼
-+
-𝛼
-𝑅
-𝑅
-(
-𝑥
-,
-𝑡
-)
-+
-𝛼
-𝐶
-𝐶
-(
-𝑥
-,
-𝑡
-)
-+
-𝛼
-𝐻
-𝐻
-(
-𝑥
-,
-𝑡
-)
-TIV jest wartością jako proces, nie jako liczba.
-
-6. MAPA ARCHITEKTURY (globalny schemat)
-(wersja tekstowa — do repo możesz dodać diagram)
-
-        GIA (meaning)
-             │
-             ▼
-TRM (topology) → TIMDR (flow)
-             │
-             ▼
-     FIELDCORE (stability)
-             │
-             ▼
-         TIV (value)
-
-Interpretacja:
-
-TRM określa gdzie płynie,
-
-TIMDR określa jak płynie,
-
-GIA określa co to znaczy,
-
-FIELDCORE określa czy jest stabilne,
-
-TIV jest tym, co płynie.
-
-To jest pełna mapa systemu.
+| Warstwa | Opis techniczny | Obiekt | Funkcja | Przepływ |
+| --- | --- | --- | --- | --- |
+| **TRM** | topologia systemu | Γ(x,y) | struktura | określa kierunki |
+| **TIMDR** | silnik przepływu | ∂X/∂t | dynamika | wykonuje przepływ |
+| **GIA** | interpretacja | Φ(x,t) | znaczenie | moduluje wartość |
+| **FIELDCORE** | stabilizacja | β, TIV* | równowaga | tłumi oscylacje |
+| **TIV** | wartość jako proces | tensor TIV | wartość | to, co płynie |
