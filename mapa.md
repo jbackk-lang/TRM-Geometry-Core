@@ -256,25 +256,17 @@ TIV jest wartością jako proces, nie jako liczba.
 6. MAPA ARCHITEKTURY (globalny schemat)
 (wersja tekstowa — do repo możesz dodać diagram)
 
-Kod
-                ┌──────────────────────────────┐
-                │          GIA (meaning)       │
-                └───────────────┬──────────────┘
-                                │
-                                ▼
-┌──────────────┐       ┌──────────────────────────────┐
-│    TRM        │──────▶        TIMDR (flow)           │
-│ (topology)    │       └──────────────────────────────┘
-└──────────────┘                    │
-                                    ▼
-                        ┌──────────────────────────────┐
-                        │      FIELDCORE (stability)    │
-                        └──────────────────────────────┘
-                                    │
-                                    ▼
-                        ┌──────────────────────────────┐
-                        │         TIV (value)           │
-                        └──────────────────────────────┘
+        GIA (meaning)
+             │
+             ▼
+TRM (topology) → TIMDR (flow)
+             │
+             ▼
+     FIELDCORE (stability)
+             │
+             ▼
+         TIV (value)
+
 Interpretacja:
 
 TRM określa gdzie płynie,
