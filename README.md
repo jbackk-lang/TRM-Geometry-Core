@@ -4,6 +4,12 @@ https://jbackk-lang.github.io
 ---
 ![Diagram TRM / GIA / TIMDR](https://github.com/jbackk-lang/GIA-and-TIMDR/raw/main/diagram.png)
 # TRM‑Geometry‑Core  
+
+> **Uwaga: to jest model koncepcyjny / narzędzie do myślenia, nie teoria naukowa ani model empiryczny.**
+> Poniższy opis nie przedstawia ustalonej, zweryfikowanej fizyki, biologii ani historii — to autorska metafora
+> służąca do analizy struktur. Nie należy tego traktować jako dowodu na to, jak faktycznie zbudowana jest
+> rzeczywistość, ani jako publikacji naukowej w rozumieniu peer review.
+
 Koncepcyjna geometria skrętu, przejść i struktur — fundament modeli Λ–τ–ρ oraz filtrów φ.
 
 ---
@@ -145,3 +151,119 @@ Nie służy do:
 
 ## 9. Licencja  
 MIT
+
+---
+
+## 📘 TRM — Model Lokalnej Spójności Przestrzenno-Czasowej
+
+TRM jest operatorem, który określa, czy dane zdarzenie (punkt, hit, próbka) jest:
+
+- spójne z lokalną strukturą sygnału,
+- spójne z sąsiadami w czasie,
+- spójne z sąsiadami w przestrzeni,
+- spójne z dynamiką sygnału.
+
+TRM nie jest klasycznym clusteringiem. TRM jest interpretacją clusteringu jako lokalnej spójności struktury.
+
+### 🧩 1. Formalna definicja TRM
+
+Dany punkt `p` w sygnale, z pozycją `x_p`, czasem `t_p`, energią `E_p`.
+
+**1. Sąsiedztwo przestrzenne**
+
+```
+N_x(p) = { q : |x_q − x_p| < d_max }
+```
+
+**2. Sąsiedztwo czasowe**
+
+```
+N_t(p) = { q : |t_q − t_p| < Δt_max }
+```
+
+**3. Sąsiedztwo łączone**
+
+```
+N(p) = N_x(p) ∩ N_t(p)
+```
+
+Interpretacja: punkt jest „prawdziwy", jeśli ma sąsiadów w przestrzeni i czasie.
+
+**4. Operator TRM**
+
+```
+TRM(p) = 1   jeśli |N(p)| ≥ k_min
+TRM(p) = 0   w przeciwnym razie
+```
+
+To jest detektor spójności lokalnej.
+
+### 🔥 2. Interpretacja geometryczna TRM
+
+TRM nie mówi „punkt jest dobry". TRM mówi: „punkt należy do lokalnej struktury sygnału".
+
+TRM wykrywa:
+- lokalne skupiska informacji,
+- stabilne struktury,
+- trajektorie,
+- obiekty,
+- prawdziwe zdarzenia w strumieniu danych.
+
+### ⚙️ 3. Interpretacja inżynierska TRM
+
+TRM jest filtrem spójności. Można go użyć do:
+- odrzucania izolowanych hitów,
+- filtrowania szumu,
+- stabilizacji detekcji,
+- wykrywania obiektów,
+- analizy ruchu,
+- segmentacji sygnału.
+
+W praktyce TRM działa jak: „detektor prawdziwych zdarzeń", „miernik lokalnej gęstości informacji", „filtr stabilności strukturalnej".
+
+### 🧠 4. TRM jako operator strukturalny
+
+TRM można rozszerzyć o:
+
+**TRM-D — gęstość lokalna**
+
+```
+D(p) = |N(p)|
+```
+
+Im większa gęstość, tym bardziej punkt należy do struktury.
+
+**TRM-S — stabilność lokalna**
+
+```
+S(p) = var( E_q : q ∈ N(p) )
+```
+
+Niska wariancja → struktura stabilna. Wysoka wariancja → struktura w stanie przejściowym.
+
+**TRM-C — spójność kierunkowa**
+
+```
+C(p) = mean( sign(x_q − x_p) )   dla q ∈ N(p)
+```
+
+To jest lokalny kierunek ruchu.
+
+### 🌐 5. TRM w pipeline
+
+TRM jest modułem, który usuwa izolowane punkty, stabilizuje sygnał, tworzy lokalne struktury i przygotowuje dane dla GIA i TIMDR.
+
+W połączeniu z TIMDR i GIA tworzy:
+- TRM → spójność
+- GIA → kierunek
+- TIMDR → zmiana
+
+### 🧬 6. TRM jako element warstwy geometrycznej
+
+TRM jest operatorem, który opisuje lokalną spójność sygnału, wykrywa struktury, działa na poziomie kształtu, nie wartości. To jest fundament dla detekcji obiektów, analizy trajektorii, filtracji strukturalnej, modeli heurystycznych geometrycznych.
+
+### 📌 Podsumowanie
+
+TRM to: operator spójności przestrzenno-czasowej, detektor lokalnych struktur, filtr stabilności, narzędzie do segmentacji sygnału, element warstwy geometrycznej.
+
+> **Nota redakcyjna:** operator `TRM(p)` zdefiniowany powyżej to formalizacja klasycznego kryterium punktu rdzeniowego znanego z gęstościowego clusteringu (np. DBSCAN: punkt jest „core", jeśli ma ≥ `k_min` sąsiadów w zadanym promieniu) — tu rozszerzonego o osobne progi przestrzenny i czasowy. Dokładnie ten mechanizm (filtr gęstościowy przestrzenno-czasowy) jest już realnie zaimplementowany w repozytorium `Senscore` jako "TRM filter". Nazwy „spójność topologiczna" i „operator geometryczny" są tu warstwą interpretacyjną — samo `TRM(p)` nie odwołuje się do topologii w sensie matematycznym, tylko do lokalnej gęstości sąsiedztwa.
